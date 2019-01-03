@@ -68,6 +68,11 @@ async function createRollupLibrary() {
     'README.md',
   ];
 
+  packageJSONData.files = [
+    "/dist",
+    "README.md"
+  ];
+  
   if (!setupEslint) {
     delete packageJSONData.devDependencies['eslint'];
     await fs.writeJson(

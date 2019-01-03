@@ -1,8 +1,6 @@
 # Application specific directories
 dist/
 
-# Files and folders to be ignored in package/rollup-library
-
 # Logs
 logs
 *.log
