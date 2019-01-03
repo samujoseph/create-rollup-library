@@ -1,6 +1,6 @@
 {
   "name": "create-rollup-library",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "A minimal configuration for creating rollup based micro-library.",
   "keywords": [
     "rollup",
