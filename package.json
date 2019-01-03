@@ -60,7 +60,7 @@
   },
   "files": [
     "/bin",
-    "/dist",
+    "/lib",
     "/rollup-library",
     "README.md"
   ],
