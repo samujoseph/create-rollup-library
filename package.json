@@ -1,7 +1,18 @@
 {
   "name": "create-rollup-library",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha.1",
   "description": "A minimal configuration for creating rollup based micro-library.",
+  "keywords": [
+    "rollup",
+    "library",
+    "configuration",
+    "build",
+    "eslint",
+    "babel",
+    "test",
+    "jest",
+    "unit test"
+  ],
   "main": "./lib/index.js",
   "scripts": {
     "cli-dev": "cross-env NODE_ENV=development BABEL_ENV=development && babel cli --watch --out-dir bin --verbose",
