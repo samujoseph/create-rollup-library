@@ -58,7 +58,6 @@ async function createRollupLibrary() {
   const packageJSONData = await fs.readJson(targetLibraryPackageJsonPath);
 
   const filesToCopy = [
-    '.gitignore',
     '.babelrc',
     'jest.config.js',
     'rollup.config.js',
@@ -93,6 +92,7 @@ async function createRollupLibrary() {
     const targetFilepath =`${targetLibraryRootPath}/${fileName}`;
     return fs.copy(sourceFilePath, targetFilepath);
   });
+  copyPromises.push(fs.copy(`${rollupLibraryTemplatePath}/gitignore`, `${targetLibraryRootPath}/.gitignore`));
   await Promise.all(copyPromises);
   console.log('Files copied successfully!');
   if (installNodeModules) {
