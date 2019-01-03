@@ -61,7 +61,7 @@
   "files": [
     "/bin",
     "/lib",
-    "/rollup-library"
+    "/rollup-library-template"
   ],
   "preferGlobal": true
 }

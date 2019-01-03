@@ -10,7 +10,7 @@ module.exports = {
         "<rootDir>/node_modules/",
         "<rootDir>/bin/",
         "<rootDir>/lib/",
-        "<rootDir>/rollup-library/",
+        "<rootDir>/rollup-library-template/",
     ],
     transform: {
         "^.+\\.js$": "babel-jest"
@@ -19,7 +19,7 @@ module.exports = {
         "<rootDir>/node_modules/",
         "<rootDir>/bin/",
         "<rootDir>/lib/",
-        "<rootDir>/rollup-library/",
+        "<rootDir>/rollup-library-template/",
     ],
     verbose: true
 };

@@ -19,8 +19,8 @@ const targetWorkingDir = process.cwd();
 const targetLibraryRootPath =`${targetWorkingDir}/${libraryName}`;
 const sourceLibraryRootPath = path.join(__dirname, '../');
 const targetLibraryPackageJsonPath = `${targetLibraryRootPath}/package.json`;
-const rollupLibraryReferencePath = `${sourceLibraryRootPath}/rollup-library`;
-const packageJsonReferencePath = `${rollupLibraryReferencePath}/package.json`;
+const rollupLibraryTemplatePath = `${sourceLibraryRootPath}/rollup-library-template`;
+const packageJsonTemplatePath = `${rollupLibraryTemplatePath}/package.json`;
 
 
 const questions = [
@@ -39,12 +39,12 @@ const questions = [
 ];
 
 async function createRollupLibrary() {
-  const packageJSONReferenceData = await fs.readJson(packageJsonReferencePath);
+  const packageJSONTemplateData = await fs.readJson(packageJsonTemplatePath);
   fs.ensureDirSync(targetLibraryRootPath);
   await fs.writeJson(
     targetLibraryPackageJsonPath, {
       name: libraryName,
-      ...packageJSONReferenceData,
+      ...packageJSONTemplateData,
     }, { 
       spaces: 2,
     },
@@ -89,7 +89,7 @@ async function createRollupLibrary() {
     filesToCopy.push(...eslintConfigFiles);
   }
   const copyPromises = filesToCopy.map(fileName => {
-    const sourceFilePath =`${rollupLibraryReferencePath}/${fileName}`;
+    const sourceFilePath =`${rollupLibraryTemplatePath}/${fileName}`;
     const targetFilepath =`${targetLibraryRootPath}/${fileName}`;
     return fs.copy(sourceFilePath, targetFilepath);
   });
