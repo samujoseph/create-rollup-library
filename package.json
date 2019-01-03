@@ -47,7 +47,6 @@
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.1"
   },
-  "private": true,
   "files": [
     "/bin",
     "/dist",
