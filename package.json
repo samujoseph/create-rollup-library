@@ -10,8 +10,8 @@
     "src-build": "cross-env NODE_ENV=production BABEL_ENV=production && babel src --out-dir lib",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test && jest --config=jest.config.js",
     "test-watch": "cross-env NODE_ENV=test BABEL_ENV=test && jest --config=jest.config.js --watch",
-    "build": "concurrently --kill-others \"npm run cli-build\" \"npm run src-build\"",
-    "dev": "concurrently --kill-others \"npm run cli-dev\" \"npm run src-dev\"",
+    "build": "concurrently --kill-others-on-fail \"npm run cli-build\" \"npm run src-build\"",
+    "dev": "concurrently --kill-others-on-fail \"npm run cli-dev\" \"npm run src-dev\"",
     "prepublishOnly": "npm run build"
   },
   "bin": {
