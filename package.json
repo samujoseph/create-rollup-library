@@ -61,7 +61,8 @@
   "files": [
     "/bin",
     "/lib",
-    "/rollup-library-template"
+    "/rollup-library-template",
+    "/rollup-library-template/.gitignore"
   ],
   "preferGlobal": true
 }
