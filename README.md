@@ -1,5 +1,7 @@
 # rollup-based-library
 
+### NOTE: This is just an initial alpha release. This software is a work in progress and this alpha release is just for testing purposes. It is recommended to not use this library for building any real projects as of now.
+
 A minimal configuration for creating a rollup based micro-library. 
 ## Covering:
 - Rollup setup
@@ -17,6 +19,7 @@ A minimal configuration for creating a rollup based micro-library.
     - add a prominent eslint config rule set (airbnb, standard or google).
 
 ## Installing create-rollup-library
+
 ```
 npm install create-rollup-library -g
 ```
