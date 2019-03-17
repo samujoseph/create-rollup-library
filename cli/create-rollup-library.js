@@ -45,7 +45,7 @@ async function createRollupLibrary() {
     targetLibraryPackageJsonPath, {
       name: libraryName,
       ...packageJSONTemplateData,
-    }, { 
+    }, {
       spaces: 2,
     },
   );
@@ -62,6 +62,7 @@ async function createRollupLibrary() {
     'jest.config.js',
     'rollup.config.js',
     'package.json',
+    'config',
     'src',
     'tests',
     'README.md',
@@ -71,17 +72,17 @@ async function createRollupLibrary() {
     "/dist",
     "README.md"
   ];
-  
+
   if (!setupEslint) {
     delete packageJSONData.devDependencies['eslint'];
     await fs.writeJson(
-      targetLibraryPackageJsonPath, 
-      packageJSONData, { 
+      targetLibraryPackageJsonPath,
+      packageJSONData, {
         spaces: 2,
       },
     );
   } else {
-    const eslintConfigFiles = [ 
+    const eslintConfigFiles = [
       '.eslintrc',
       '.eslintignore',
     ];
@@ -96,8 +97,8 @@ async function createRollupLibrary() {
   await Promise.all(copyPromises);
   console.log('Files copied successfully!');
   if (installNodeModules) {
-    execSync('npm install', { 
-      cwd: targetLibraryRootPath, 
+    execSync('npm install', {
+      cwd: targetLibraryRootPath,
       stdio: 'inherit',
     });
   }
