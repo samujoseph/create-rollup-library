@@ -1,59 +1,38 @@
-import replace from "rollup-plugin-replace";
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
-import { terser } from "rollup-plugin-terser";
-
-import { 
-    browser as browserModulePath,
-    module as esModulePath,
-    main as cjsModulePath,
-} from './package.json';
+import fs from 'fs';
+import cjsRollupConfig from './config/rollup/cjs.rollup.config';
+import esmRollupConfig from './config/rollup/esm.rollup.config';
+import iifeRollupConfig from './config/rollup/iife.rollup.config';
 
 const environment = process.env.NODE_ENV;
-const showSourceMaps = environment === 'development';
-const sourcemap = showSourceMaps ? 'inline' : false;
+
+const configMap = {
+  cjs: cjsRollupConfig,
+  esm: esmRollupConfig,
+  iife: iifeRollupConfig,
+};
+
+export const getPackageJSON = () => {
+  const packageData = fs.readFileSync('./package.json');
+  return JSON.parse(packageData);
+};
+
+const packageJSONData = getPackageJSON();
+const {
+  browser: browserModulePath,
+  module: esModulePath,
+  main: cjsModulePath,
+} = packageJSONData;
+
+const libPathMap = {
+  cjs: cjsModulePath,
+  esm: esModulePath,
+  iife: browserModulePath,
+};
+
 
 export default (commandLineArgs) => {
-    return {
-        input: 'src/index.js', 
-        output: [
-        {
-            file: esModulePath,
-            format: 'esm',
-            sourcemap,
-        },
-        {
-            file: cjsModulePath,
-            format: 'cjs',
-            sourcemap,
-        },
-        {
-            file: browserModulePath,
-            format: 'iife',
-            name: 'SimpleMathLibrary',
-            sourcemap,
-        }
-        ],
-        plugins: [
-            replace({
-                ENVIRONMENT: JSON.stringify(environment)
-            }),
-            resolve(),
-            commonjs({
-                include: ['node_modules/**'],
-                namedExports: {}
-            }),
-            babel({
-                exclude: 'node_modules/**'
-            }),
-            terser(),
-        ],
-        external: [],
-        watch: {
-            include: ['src/**'],
-            exclude: 'node_modules/**',
-            clearScreen: true,
-        },
-    };
+  const { format } = commandLineArgs;
+  const getConfig = configMap[format];
+  const libPath = libPathMap[format];
+  return getConfig(libPath, environment, commandLineArgs);
 };
